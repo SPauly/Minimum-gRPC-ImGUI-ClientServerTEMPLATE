@@ -21,9 +21,12 @@ project(external)
 
 include(ExternalProject)
 
-if(SUP_GRPC_LOC)
-    message(STATUS "LOC:::::::::::::::::")
-endif()
+if(SUP_GRPC_PRECOMPILED_BINARIES)
+  message(STATUS "External: Using precompiled binaries for gRPC at: ${SUP_GRPC_PRECOMPILED_BINARIES_DIR}")
+  #set all necessary variables or run some tests
+
+else()
+  message(STATUS "External: Building gRPC from source at: ${SUP_GRPC_DIR}")
   # Builds absl project from the git submodule.
   ExternalProject_Add(absl
     PREFIX absl
@@ -111,14 +114,17 @@ endif()
     DEPENDS c-ares protobuf re2 zlib absl
   )
 
-  ExternalProject_Add(glfw
-    PREFIX glfw
-    SOURCE_DIR "${SUP_GLFW_DIR}"
-    CMAKE_CACHE_ARGS
-          -DCMAKE_CXX_FLAGS:STRING=pkg-config --libs glfw3
-          -DCMAKE_INSTALL_PREFIX:PATH=${CMAKE_CURRENT_BINARY_DIR}/glfw
-          -DGLFW_BUILD_DOCS:BOOL=OFF
-          -DGLFW_BUILD_TESTS:BOOL=OFF 
-          -DGLFW_BUILD_EXAMPLES:BOOL=OFF
-          -DGLFW_INSTALL:BOOL=ON
-  )
+endif() #SUP_GRPC_PRECOMPILED_BINARIES
+
+#build smaller dependencies like GLFW and ImGUI
+ExternalProject_Add(glfw
+  PREFIX glfw
+  SOURCE_DIR "${SUP_GLFW_DIR}"
+  CMAKE_CACHE_ARGS
+        -DCMAKE_CXX_FLAGS:STRING=pkg-config --libs glfw3
+        -DCMAKE_INSTALL_PREFIX:PATH=${CMAKE_CURRENT_BINARY_DIR}/glfw
+        -DGLFW_BUILD_DOCS:BOOL=OFF
+        -DGLFW_BUILD_TESTS:BOOL=OFF 
+        -DGLFW_BUILD_EXAMPLES:BOOL=OFF
+        -DGLFW_INSTALL:BOOL=ON
+)
