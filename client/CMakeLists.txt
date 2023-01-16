@@ -15,6 +15,8 @@ find_package(OpenGL REQUIRED)
 
 add_executable(${PROJECT_NAME}
     "${PROJECT_SOURCE_DIR}/src/main.cpp"
+    "${PROJECT_SOURCE_DIR}/src/Application.cpp"    
+    "${PROJECT_SOURCE_DIR}/src/LayerStack.cpp"    
 )
 
 target_link_libraries(${PROJECT_NAME} glfw ${GLFW_LIBRARIES})

@@ -38,6 +38,7 @@ message(STATUS "Adding Client")
       SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/client"
       BINARY_DIR "${CMAKE_CURRENT_SOURCE_DIR}/build/client"
       INSTALL_COMMAND ""
+      BUILD_ALWAYS TRUE
       CMAKE_CACHE_ARGS
           -Dglfw3_DIR:PATH=${CMAKE_CURRENT_SOURCE_DIR}/build/third_party/glfw/lib/cmake/glfw3
           -Dimgui_LIB:PATH=${CMAKE_CURRENT_SOURCE_DIR}/build/third_party

@@ -1,8 +1,9 @@
-#include <iostream>
+#include "Application.h"
 
-int main()
-{
-    std::cout<<"Hello World"<<std::endl;
-    std::cin.get();
+
+int main(){
+    Your_Project::Application *app = Your_Project::CreateApplication();
+    app->Run();
+    delete app;
     return 0;
 }
