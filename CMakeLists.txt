@@ -11,7 +11,7 @@ include(cmake/costum-config.cmake)
 include(ExternalProject)
 
 # Build third_party_dependencies
-if(SUP_FULL_BUILD)
+if(SUP_THIRDPARTY_BUILD)
 message(STATUS "Adding Third Party Dependencies")
 message(STATUS "Using gRPC Location: ${SUP_GRPC_DIR}")
 message(STATUS "Using GLFW Location: ${SUP_GLFW_DIR}")
@@ -28,4 +28,20 @@ message(STATUS "Using GLFW Location: ${SUP_GLFW_DIR}")
           -DSUP_GRPC_PRECOMPILED_BINARIES_DIR:PATH=${SUP_GRPC_PRECOMPILED_BINARIES_DIR}
           -DCMAKE_INSTALL_PREFIX:PATH=${CMAKE_CURRENT_BINARY_DIR}/Third_Party_Depends
   )
-endif() 
+endif() #SUP_THIRDPARTY_BUILD
+
+if(SUP_CLIENT_BUILD)
+message(STATUS "Adding Client")
+
+  ExternalProject_Add(client
+      PREFIX client
+      SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/client"
+      BINARY_DIR "${CMAKE_CURRENT_SOURCE_DIR}/build/client"
+      INSTALL_COMMAND ""
+      CMAKE_CACHE_ARGS
+          -Dglfw3_DIR:PATH=${CMAKE_CURRENT_SOURCE_DIR}/build/third_party/glfw/lib/cmake/glfw3
+          -Dimgui_LIB:PATH=${CMAKE_CURRENT_SOURCE_DIR}/build/third_party
+          -Dimgui_DIR:PATH=${CMAKE_CURRENT_SOURCE_DIR}/build/third_party/libimgui.a
+      DEPENDS Third_Party_Depends
+  )
+endif() #SUP_CLIENT_BUILD

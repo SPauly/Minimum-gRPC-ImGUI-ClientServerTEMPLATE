@@ -1,5 +1,6 @@
 # Build Variables
-set(SUP_FULL_BUILD ON CACHE BOOL "Full build" FORCE)
+set(SUP_THIRDPARTY_BUILD ON CACHE BOOL "Build Third Party Dependencies" FORCE)
+set(SUP_CLIENT_BUILD ON CACHE BOOL "Build Client" FORCE)
 
 # Third_Party_Depends Variables
 set(SUP_GRPC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/external/grpc" CACHE PATH "gRPC Location" FORCE)
