@@ -25,7 +25,7 @@ namespace Your_Project
     bool Application::Init()
     {
         // Begin: ImGui Window Init
-
+    
         // Setup window
         glfwSetErrorCallback(glfw_error_callback);
         if (!glfwInit())

@@ -3,6 +3,7 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(CMAKE_CXX_FLAGS "${CMAKE_C_FLAGS} -Wall -Wformat")
 set(-DCMAKE_RC_COMPILER=windres)
+
 # Project
 project(external)
 
@@ -10,6 +11,9 @@ include(ExternalProject)
 
 #build smaller dependencies (GLFW and ImGUI)
 # GLFW
+message(STATUS "SUP: External:Adding GLFW")
+message(STATUS "SUP: External: DEB: dir is: ${SUP_GLFW_DIR}")
+
 ExternalProject_Add(glfw
   PREFIX glfw
   SOURCE_DIR "${SUP_GLFW_DIR}"
@@ -23,6 +27,8 @@ ExternalProject_Add(glfw
 )
 
 # ImGUI
+message(STATUS "SUP: External: Building imgui")
+
 add_library(imgui
       "${PROJECT_SOURCE_DIR}/imgui/imgui.cpp"
       "${PROJECT_SOURCE_DIR}/imgui/imgui_demo.cpp"
@@ -36,14 +42,14 @@ add_library(imgui
 target_include_directories(imgui PUBLIC
     "${PROJECT_SOURCE_DIR}/imgui"
     "${PROJECT_SOURCE_DIR}/imgui/backends"
-    "${PROJECT_SOURCE_DIR}/../build/third_party/glfw/include"
+    "${SUP_ROOT_FOLDER}/build/third_party/glfw/include"
 )
 
 add_dependencies(imgui glfw)
 
 # Build gRPC  
 if(SUP_GRPC_PRECOMPILED_BINARIES)
-  message(STATUS "External: Using precompiled binaries for gRPC at: ${SUP_GRPC_PRECOMPILED_BINARIES_DIR}")
+  message(STATUS "SUP: External: Using precompiled binaries for gRPC at: ${SUP_GRPC_BINARIES_DIR}")
   #set all necessary variables or run some tests
 
 else()
@@ -62,11 +68,11 @@ else()
 # limitations under the License.
 #
 # changed by the author of this repository 
-  message(STATUS "External: Building gRPC from source at: ${SUP_GRPC_DIR}")
+  message(STATUS "External: Building gRPC from source at: ${SUP_GRPC_BINARIES_DIR}")
   # Builds absl project from the git submodule.
   ExternalProject_Add(absl
     PREFIX absl
-    SOURCE_DIR "${SUP_GRPC_DIR}/third_party/abseil-cpp"
+    SOURCE_DIR "${SUP_GRPC_BINARIES_DIR}/abseil-cpp"
     CMAKE_CACHE_ARGS
           -DCMAKE_POSITION_INDEPENDENT_CODE:BOOL=TRUE
           -DCMAKE_INSTALL_PREFIX:PATH=${CMAKE_CURRENT_BINARY_DIR}/absl
@@ -75,7 +81,7 @@ else()
   # Builds c-ares project from the git submodule.
   ExternalProject_Add(c-ares
     PREFIX c-ares
-    SOURCE_DIR "${SUP_GRPC_DIR}/third_party/cares/cares"
+    SOURCE_DIR "${SUP_GRPC_BINARIES_DIR}/cares/cares"
     CMAKE_CACHE_ARGS
           -DCARES_SHARED:BOOL=OFF
           -DCARES_STATIC:BOOL=ON
@@ -86,7 +92,7 @@ else()
   # Builds protobuf project from the git submodule.
   ExternalProject_Add(protobuf
     PREFIX protobuf
-    SOURCE_DIR "${SUP_GRPC_DIR}/third_party/protobuf/cmake"
+    SOURCE_DIR "${SUP_GRPC_BINARIES_DIR}/protobuf/cmake"
     CMAKE_CACHE_ARGS
           -Dprotobuf_BUILD_TESTS:BOOL=OFF
           -Dprotobuf_WITH_ZLIB:BOOL=OFF
@@ -97,7 +103,7 @@ else()
   # Builds re2 project from the git submodule.
   ExternalProject_Add(re2
     PREFIX re2
-    SOURCE_DIR "${SUP_GRPC_DIR}/third_party/re2"
+    SOURCE_DIR "${SUP_GRPC_BINARIES_DIR}/re2"
     CMAKE_CACHE_ARGS
           -DCMAKE_POSITION_INDEPENDENT_CODE:BOOL=TRUE
           -DCMAKE_INSTALL_PREFIX:PATH=${CMAKE_CURRENT_BINARY_DIR}/re2
@@ -106,7 +112,7 @@ else()
   # Builds zlib project from the git submodule.
   ExternalProject_Add(zlib
     PREFIX zlib
-    SOURCE_DIR "${SUP_GRPC_DIR}/third_party/zlib"
+    SOURCE_DIR "${SUP_GRPC_BINARIES_DIR}/zlib"
     CMAKE_CACHE_ARGS
           -DCMAKE_INSTALL_PREFIX:PATH=${CMAKE_CURRENT_BINARY_DIR}/zlib
   )
@@ -128,7 +134,7 @@ else()
   # are correctly located.
   ExternalProject_Add(grpc
     PREFIX grpc
-    SOURCE_DIR "${SUP_GRPC_DIR}"
+    SOURCE_DIR "${SUP_GRPC_BINARIES_DIR}"
     CMAKE_CACHE_ARGS
           -DgRPC_INSTALL:BOOL=ON
           -DgRPC_BUILD_TESTS:BOOL=OFF

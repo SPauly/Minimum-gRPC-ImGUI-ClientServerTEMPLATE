@@ -10,6 +10,8 @@ project(client)
 set(OpenGL_GL_PREFERENCE GLVND)
 
 link_directories(${imgui_LIB})
+include_directories(${SUP_ROOT_FOLDER}/external/imgui)
+
 find_package(glfw3 3.3 REQUIRED)
 find_package(OpenGL REQUIRED)
 
@@ -25,9 +27,9 @@ target_link_libraries(${PROJECT_NAME} ${imgui_DIR})
 
 target_include_directories(${PROJECT_NAME} PUBLIC
     "${PROJECT_SOURCE_DIR}"
-    "${PROJECT_SOURCE_DIR}/../utils"
+    "${SUP_ROOT_FOLDER}/utils"
     "${PROJECT_SOURCE_DIR}/src/"
-    "${PROJECT_SOURCE_DIR}/../external/imgui"
-    "${PROJECT_SOURCE_DIR}/../external/imgui/backends"
-    "${PROJECT_SOURCE_DIR}/../build/thir_party/glfw/include/"
+    "${SUP_ROOT_FOLDER}/external/imgui"
+    "${SUP_ROOT_FOLDER}/external/imgui/backends"
+    "${SUP_ROOT_FOLDER}/build/thir_party/glfw/include/"
 )
