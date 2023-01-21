@@ -16,7 +16,7 @@ project(${SUP_PROJECT_NAME})
 # Build third_party_dependencies
 if(SUP_THIRDPARTY_BUILD)
 message(STATUS "Adding Third Party Dependencies")
-message(STATUS "Using gRPC Location: ${SUP_GRPC_DIR}")
+message(STATUS "Using gRPC Location: ${SUP_GRPC_BINARIES_DIR}")
 
   ExternalProject_Add(Third_Party_Depends
       PREFIX external
@@ -57,7 +57,7 @@ message(STATUS "Adding Client")
       BINARY_DIR "${CMAKE_CURRENT_SOURCE_DIR}/build/client"
       INSTALL_COMMAND ""
       BUILD_ALWAYS TRUE
-      CMAKE_ARGS
+      CMAKE_CACHE_ARGS
           -DSUP_ROOT_FOLDER:PATH=${SUP_ROOT_FOLDER}
           -Dglfw3_DIR:PATH=${CMAKE_CURRENT_SOURCE_DIR}/build/third_party/glfw/lib/cmake/glfw3
           -Dimgui_LIB:PATH=${CMAKE_CURRENT_SOURCE_DIR}/build/third_party
@@ -65,3 +65,19 @@ message(STATUS "Adding Client")
       DEPENDS Third_Party_Depends utils
   )
 endif() #SUP_CLIENT_BUILD
+
+if(SUP_SERVER_BUILD)
+message(STATUS "Adding Server")
+
+  ExternalProject_Add(server
+      PREFIX server
+      SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/server"
+      BINARY_DIR "${CMAKE_CURRENT_SOURCE_DIR}/build/server"
+      INSTALL_COMMAND ""
+      BUILD_ALWAYS TRUE
+      CMAKE_CACHE_ARGS
+          -DSUP_ROOT_FOLDER:PATH=${SUP_ROOT_FOLDER}
+      DEPENDS Third_Party_Depends utils
+  )
+
+endif() #SUP_SERVER_BUILD

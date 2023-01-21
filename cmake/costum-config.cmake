@@ -2,9 +2,11 @@
 set(SUP_PROJECT_NAME "Your_Project" CACHE STRING "Name of the main Project" FORCE)
 get_filename_component(SUP_ROOT_FOLDER_par ${CMAKE_SOURCE_DIR} DIRECTORY)
 set(SUP_ROOT_FOLDER ${SUP_ROOT_FOLDER_par}/Minimum-gRPC-ImGUI-ClientServerTEMPLATE)
+
 # Build Variables
 set(SUP_THIRDPARTY_BUILD ON CACHE BOOL "Build Third Party Dependencies" FORCE)
 set(SUP_CLIENT_BUILD ON CACHE BOOL "Build Client" FORCE)
+set(SUP_SERVER_BUILD ON CACHE BOOL "Build Server" FORCE)
 set(SUP_UTILS_BUILD ON CACHE BOOL "Generate and compile the utilities" FORCE)
 
 # Third_Party_Depends Variables
