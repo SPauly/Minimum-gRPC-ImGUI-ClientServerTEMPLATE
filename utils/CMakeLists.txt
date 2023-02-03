@@ -39,10 +39,10 @@ add_library(sup_grpc_proto
   ${sup_proto_srcs}
   ${sup_proto_hdrs})
 
-target_include_directories(sup_grpc_proto PRIVATE
+target_include_directories(sup_grpc_proto PUBLIC
     ${PROJECT_SOURCE_DIR}/
-    ${SUP_GRPC_BINARIES_DIR}/protobuf/include
-    ${SUP_GRPC_BINARIES_DIR}/grpc/include
+    ${SUP_GRPC_BINARIES_DIR}/protobuf/include/
+    ${SUP_GRPC_BINARIES_DIR}/grpc/include/
 )
   
 target_link_libraries(sup_grpc_proto

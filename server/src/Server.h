@@ -1,10 +1,5 @@
 #pragma once
 
-#include <grpc/grpc.h>
-#include <grpcpp/security/server_credentials.h>
-#include <grpcpp/server.h>
-#include <grpcpp/server_builder.h>
-#include <grpcpp/server_context.h>
 #include "Your_Project_protocol.grpc.pb.h"
 
 #include <iostream>
@@ -14,7 +9,7 @@
 
 namespace Your_Project 
 {
-    class Server final : public YourProjectServer::Service
+    class Server final : public YourProject::YourProjectServer::Service
     {
     public:
         Server() = default;
@@ -23,7 +18,7 @@ namespace Your_Project
         void Run();
 
     private:
-
+        YourProject::Id something;        
     };
     
     Server *CreateServer();
