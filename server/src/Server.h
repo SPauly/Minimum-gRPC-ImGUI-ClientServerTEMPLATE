@@ -1,10 +1,20 @@
 #pragma once
 
-#include <string>
+#include <grpc/grpc.h>
+#include <grpcpp/security/server_credentials.h>
+#include <grpcpp/server.h>
+#include <grpcpp/server_builder.h>
+#include <grpcpp/server_context.h>
+#include "Your_Project_protocol.grpc.pb.h"
 
-namespace Your_Project
+#include <iostream>
+#include <string>
+#include <memory>
+
+
+namespace Your_Project 
 {
-    class Server
+    class Server final : public YourProjectServer::Service
     {
     public:
         Server() = default;

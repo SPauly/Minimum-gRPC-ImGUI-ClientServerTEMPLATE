@@ -6,7 +6,7 @@ namespace Your_Project
 {
     void Server::Run()
     {
-        std::cout<<"Server Running. Waiting for Connections..."<<std::endl;
+        std::cout<<"Server Running. Waiting for Connections"<<std::endl;
         return;
     }
 

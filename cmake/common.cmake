@@ -14,6 +14,15 @@
 #
 # changed by the author of this repository
 
+set(glfw3_DIR ${SUP_GRPC_BINARIES_DIR}/glfw/lib/cmake/glfw3)
+set(Protobuf_DIR ${SUP_GRPC_BINARIES_DIR}/protobuf/lib/cmake/protobuf)
+set(c-ares_DIR ${SUP_GRPC_BINARIES_DIR}/c-ares/lib/cmake/c-ares)
+set(re2_DIR ${SUP_GRPC_BINARIES_DIR}/re2/lib/cmake/re2)
+set(ZLIB_ROOT ${SUP_GRPC_BINARIES_DIR}/zlib)
+set(absl_DIR ${SUP_GRPC_BINARIES_DIR}/absl/lib/cmake/absl)
+set(gRPC_DIR ${SUP_GRPC_BINARIES_DIR}/grpc/lib/cmake/grpc)
+set(sup_grpc_proto ${SUP_ROOT_FOLDER}/build/utils/)
+
 # Find Protobuf installation
 # Looks for protobuf-config.cmake file installed by Protobuf's cmake installation.
 set(protobuf_MODULE_COMPATIBLE TRUE)

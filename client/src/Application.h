@@ -15,7 +15,6 @@
 
 #include "LayerStack.h"
 
-
 namespace Your_Project
 {
     class Application

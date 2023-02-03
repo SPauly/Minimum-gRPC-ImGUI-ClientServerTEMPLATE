@@ -7,19 +7,8 @@ set(-DCMAKE_RC_COMPILER=windres)
 
 project(utils)
 
-message(STATUS "SUP: Utils: GRPC dir is: ${SUP_GRPC_BINARIES_DIR}")
-set(glfw3_DIR ${SUP_GRPC_BINARIES_DIR}/glfw/lib/cmake/glfw3)
-set(Protobuf_DIR ${SUP_GRPC_BINARIES_DIR}/protobuf/lib/cmake/protobuf)
-set(c-ares_DIR ${SUP_GRPC_BINARIES_DIR}/c-ares/lib/cmake/c-ares)
-set(re2_DIR ${SUP_GRPC_BINARIES_DIR}/re2/lib/cmake/re2)
-set(ZLIB_ROOT ${SUP_GRPC_BINARIES_DIR}/zlib)
-set(absl_DIR ${SUP_GRPC_BINARIES_DIR}/absl/lib/cmake/absl)
-set(gRPC_DIR ${SUP_GRPC_BINARIES_DIR}/grpc/lib/cmake/grpc)
-set(hab_grpc_proto_DIR ${SUP_GRPC_BINARIES_DIR}/utils)
-
-message(STATUS "SUP: Utils: Protobuf_DIR is: ${SUP_GRPC_BINARIES_DIR}/protobuf/lib/cmake/protobuf")
-
 include(${SUP_ROOT_FOLDER}/cmake/common.cmake)
+
   
 # Proto file
 get_filename_component(sup_proto "${SUP_PROJECT_NAME}_protocol.proto" ABSOLUTE)
@@ -50,10 +39,10 @@ add_library(sup_grpc_proto
   ${sup_proto_srcs}
   ${sup_proto_hdrs})
 
-target_include_directories(sup_grpc_proto PUBLIC
-    "${PROJECT_SOURCE_DIR}"
-    "${SUP_ROOT_FOLDER}/build/third_party/protobuf/include"
-    "${SUP_ROOT_FOLDER}/build/third_party/grpc/include"
+target_include_directories(sup_grpc_proto PRIVATE
+    ${PROJECT_SOURCE_DIR}/
+    ${SUP_GRPC_BINARIES_DIR}/protobuf/include
+    ${SUP_GRPC_BINARIES_DIR}/grpc/include
 )
   
 target_link_libraries(sup_grpc_proto

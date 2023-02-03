@@ -1,7 +1,7 @@
 # Main Variables
 set(SUP_PROJECT_NAME "Your_Project" CACHE STRING "Name of the main Project" FORCE)
 get_filename_component(SUP_ROOT_FOLDER_par ${CMAKE_SOURCE_DIR} DIRECTORY)
-set(SUP_ROOT_FOLDER ${SUP_ROOT_FOLDER_par}/Minimum-gRPC-ImGUI-ClientServerTEMPLATE)
+set(SUP_ROOT_FOLDER "${SUP_ROOT_FOLDER_par}/Minimum-gRPC-ImGUI-ClientServerTEMPLATE")
 
 # Build Variables
 set(SUP_THIRDPARTY_BUILD ON CACHE BOOL "Build Third Party Dependencies" FORCE)

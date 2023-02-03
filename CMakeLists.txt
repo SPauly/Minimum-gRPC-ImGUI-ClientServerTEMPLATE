@@ -77,7 +77,8 @@ message(STATUS "Adding Server")
       BUILD_ALWAYS TRUE
       CMAKE_CACHE_ARGS
           -DSUP_ROOT_FOLDER:PATH=${SUP_ROOT_FOLDER}
+          -DSUP_PROJECT_NAME:STRING=${SUP_PROJECT_NAME}
+          -DSUP_GRPC_BINARIES_DIR:PATH=${SUP_GRPC_BINARIES_DIR}
       DEPENDS Third_Party_Depends utils
-  )
-
+  ) 
 endif() #SUP_SERVER_BUILD

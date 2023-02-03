@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package Your_Project;
+package YourProject;
 
 service YourProjectServer {
   rpc Ping(Id) returns (Id) {}

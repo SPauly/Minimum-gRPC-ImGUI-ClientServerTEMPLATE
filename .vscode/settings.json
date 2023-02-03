@@ -2,5 +2,6 @@
     "files.associations": {
         "memory": "cpp",
         "string": "cpp"
-    }
+    },
+    "C_Cpp.intelliSenseEngineFallback": "disabled"
 }
