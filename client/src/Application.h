@@ -1,3 +1,4 @@
+#pragma once
 
 #include "imgui.h"
 #include "imgui_impl_glfw.h"
@@ -8,6 +9,14 @@
 #include <GLES2/gl2.h>
 #endif
 #include <GLFW/glfw3.h> // Will drag system OpenGL headers
+
+#include <grpc/grpc.h>
+#include <grpcpp/channel.h>
+#include <grpcpp/client_context.h>
+#include <grpcpp/create_channel.h>
+#include <grpcpp/security/credentials.h>
+
+#include "Your_Project_protocol.grpc.pb.h"
 
 #include <vector>
 #include <memory>

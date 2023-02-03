@@ -9,8 +9,10 @@ project(client)
 
 set(OpenGL_GL_PREFERENCE GLVND)
 
+include(${SUP_ROOT_FOLDER}/cmake/common.cmake)
+
 link_directories(${imgui_LIB})
-include_directories(${SUP_ROOT_FOLDER}/external/imgui)
+link_directories(${SUP_ROOT_FOLDER}/build/utils)
 
 find_package(glfw3 3.3 REQUIRED)
 find_package(OpenGL REQUIRED)
@@ -21,10 +23,6 @@ add_executable(${PROJECT_NAME}
     "${PROJECT_SOURCE_DIR}/src/LayerStack.cpp"    
 )
 
-target_link_libraries(${PROJECT_NAME} glfw ${GLFW_LIBRARIES})
-target_link_libraries(${PROJECT_NAME} OpenGL::GL)
-target_link_libraries(${PROJECT_NAME} ${imgui_DIR})
-
 target_include_directories(${PROJECT_NAME} PUBLIC
     "${PROJECT_SOURCE_DIR}"
     "${SUP_ROOT_FOLDER}/utils"
@@ -33,3 +31,15 @@ target_include_directories(${PROJECT_NAME} PUBLIC
     "${SUP_ROOT_FOLDER}/external/imgui/backends"
     "${SUP_ROOT_FOLDER}/build/thir_party/glfw/include/"
 )
+
+target_link_libraries(${PROJECT_NAME} glfw ${GLFW_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} OpenGL::GL)
+target_link_libraries(${PROJECT_NAME} ${imgui_DIR})
+target_link_libraries(${PROJECT_NAME}
+sup_grpc_proto
+${_REFLECTION}
+${_GRPC_GRPCPP}
+${_PROTOBUF_LIBPROTOBUF}
+)
+
+

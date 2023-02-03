@@ -1,4 +1,5 @@
 #include "Application.h"
+#include "PingDemo.h"
 
 #if defined(_MSC_VER) && (_MSC_VER >= 1900) && !defined(IMGUI_DISABLE_WIN32_FUNCTIONS)
 #pragma comment(lib, "legacy_stdio_definitions")
@@ -108,6 +109,7 @@ namespace Your_Project
         // End ImGui Window Init
 
         this->PushLayer<ExampleLayer>();
+        this->PushLayer<PingDemo>();
         return true;
     }
 
