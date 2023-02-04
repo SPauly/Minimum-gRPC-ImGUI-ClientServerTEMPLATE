@@ -3,7 +3,8 @@
         {
             "name": "Win32",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/../Habitify/build/third_party/**"
             ],
             "defines": [
                 "_DEBUG",
@@ -20,7 +21,8 @@
         {
             "name": "mingw",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/../Habitify/build/third_party/**"
             ],
             "defines": [
                 "_DEBUG",

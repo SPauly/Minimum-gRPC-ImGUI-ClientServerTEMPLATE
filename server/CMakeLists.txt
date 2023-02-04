@@ -18,6 +18,8 @@ project(server)
 
 include(${SUP_ROOT_FOLDER}/cmake/common.cmake)
 link_directories(${SUP_ROOT_FOLDER}/build/utils)
+link_directories(${SUP_GRPC_BINARIES_DIR}/grpc/lib)
+link_directories(${SUP_GRPC_BINARIES_DIR}/protobuf/lib)
 
 add_executable(${PROJECT_NAME}
     "${PROJECT_SOURCE_DIR}/src/main.cpp"
@@ -28,6 +30,8 @@ target_include_directories(${PROJECT_NAME} PUBLIC
     ${PROJECT_SOURCE_DIR}
     ${PROJECT_SOURCE_DIR}/src
     ${SUP_ROOT_FOLDER}/utils
+    "${SUP_GRPC_BINARIES_DIR}/grpc/include"
+    "${SUP_GRPC_BINARIES_DIR}/protobuf/include"
 )
 
 target_link_libraries(${PROJECT_NAME}

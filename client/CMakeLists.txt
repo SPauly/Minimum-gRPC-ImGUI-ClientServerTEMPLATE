@@ -13,6 +13,8 @@ include(${SUP_ROOT_FOLDER}/cmake/common.cmake)
 
 link_directories(${imgui_LIB})
 link_directories(${SUP_ROOT_FOLDER}/build/utils)
+link_directories(${SUP_GRPC_BINARIES_DIR}/grpc/lib)
+link_directories(${SUP_GRPC_BINARIES_DIR}/protobuf/lib)
 
 find_package(glfw3 3.3 REQUIRED)
 find_package(OpenGL REQUIRED)
@@ -30,6 +32,8 @@ target_include_directories(${PROJECT_NAME} PUBLIC
     "${SUP_ROOT_FOLDER}/external/imgui"
     "${SUP_ROOT_FOLDER}/external/imgui/backends"
     "${SUP_ROOT_FOLDER}/build/thir_party/glfw/include/"
+    "${SUP_GRPC_BINARIES_DIR}/grpc/include"
+    "${SUP_GRPC_BINARIES_DIR}/protobuf/include"
 )
 
 target_link_libraries(${PROJECT_NAME} glfw ${GLFW_LIBRARIES})
