@@ -19,7 +19,7 @@ ExternalProject_Add(glfw
   SOURCE_DIR "${SUP_GLFW_DIR}"
   CMAKE_CACHE_ARGS
         -DCMAKE_CXX_FLAGS:STRING=pkg-config --libs glfw3
-        -DCMAKE_INSTALL_PREFIX:PATH=${SUP_GRPC_BINARIES_DIR}/glfw
+        -DCMAKE_INSTALL_PREFIX:PATH=${SUP_ROOT_FOLDER}/build/third_party/glfw
         -DGLFW_BUILD_DOCS:BOOL=OFF
         -DGLFW_BUILD_TESTS:BOOL=OFF 
         -DGLFW_BUILD_EXAMPLES:BOOL=OFF
@@ -28,6 +28,7 @@ ExternalProject_Add(glfw
 
 # ImGUI
 message(STATUS "SUP: External: Building imgui")
+
 
 add_library(imgui
       "${PROJECT_SOURCE_DIR}/imgui/imgui.cpp"
@@ -38,14 +39,14 @@ add_library(imgui
       "${PROJECT_SOURCE_DIR}/imgui/backends/imgui_impl_opengl3.cpp"
       "${PROJECT_SOURCE_DIR}/imgui/backends/imgui_impl_glfw.cpp"
 )
-  
+
+add_dependencies(imgui glfw)
+
 target_include_directories(imgui PUBLIC
     "${PROJECT_SOURCE_DIR}/imgui"
     "${PROJECT_SOURCE_DIR}/imgui/backends"
     "${SUP_ROOT_FOLDER}/build/third_party/glfw/include"
 )
-
-add_dependencies(imgui glfw)
 
 # Build gRPC  
 if(SUP_GRPC_PRECOMPILED_BINARIES)
