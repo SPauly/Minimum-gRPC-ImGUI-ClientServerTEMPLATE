@@ -1,4 +1,7 @@
 #pragma once
+
+#include <memory>
+
 #include "Layer.h"
 
 #include "imgui.h"
@@ -8,8 +11,8 @@
 #include <grpc/grpc.h>
 #include <grpcpp/channel.h>
 #include <grpcpp/client_context.h>
-#include <grpcpp/create_channel.h>
-#include <grpcpp/security/credentials.h>
+
+#include "Your_Project_protocol.grpc.pb.h"
 
 namespace Your_Project
 {
@@ -17,14 +20,19 @@ namespace Your_Project
     {
     public:
         PingDemo() = default;
+        PingDemo(std::shared_ptr<grpc::Channel> _channel) : msprt_channel(_channel) {};
         ~PingDemo() = default;
 
         virtual void OnUIRender() override{
             ImGui::Begin("PingDemo");
+                if(ImGui::Button("Ping Server"))
+                {
 
+                }
             ImGui::End();
         };
     private:
-
+        std::shared_ptr<grpc::Channel> msprt_channel;
+        std::unique_ptr<YourProject::YourProjectServer::Stub> m_stub;
     };
 }

@@ -1,5 +1,10 @@
 #pragma once
 
+#include <vector>
+#include <memory>
+#include <functional>
+#include <string>
+
 #include "imgui.h"
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
@@ -17,10 +22,6 @@
 #include <grpcpp/security/credentials.h>
 
 #include "Your_Project_protocol.grpc.pb.h"
-
-#include <vector>
-#include <memory>
-#include <functional>
 
 #include "LayerStack.h"
 
@@ -55,6 +56,10 @@ namespace Your_Project
         LayerStack m_layer_stack;
     private:
         static Application *s_Instance;
+
+        std::string m_server_address = "localhost:50000";
+        std::shared_ptr<grpc::Channel> msprt_channel;
+        std::unique_ptr<YourProject::YourProjectServer::Stub> muprt_stub;
     };
 
     Application *CreateApplication();

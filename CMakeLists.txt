@@ -62,6 +62,7 @@ message(STATUS "Adding Client")
           -Dglfw3_DIR:PATH=${CMAKE_CURRENT_SOURCE_DIR}/build/third_party/glfw/lib/cmake/glfw3
           -Dimgui_LIB:PATH=${CMAKE_CURRENT_SOURCE_DIR}/build/third_party
           -Dimgui_DIR:PATH=${CMAKE_CURRENT_SOURCE_DIR}/build/third_party/libimgui.a
+          -DSUP_GRPC_BINARIES_DIR:PATH=${SUP_GRPC_BINARIES_DIR}
       DEPENDS Third_Party_Depends utils
   )
 endif() #SUP_CLIENT_BUILD

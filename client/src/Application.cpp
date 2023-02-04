@@ -108,8 +108,13 @@ namespace Your_Project
 
         // End ImGui Window Init
 
+        //grpc init
+        msprt_channel = grpc::CreateChannel(m_server_address, grpc::InsecureChannelCredentials());
+        muprt_stub = YourProject::YourProjectServer::NewStub(msprt_channel);
+
+        //layer init
         this->PushLayer<ExampleLayer>();
-        this->PushLayer<PingDemo>();
+        this->PushLayer(std::make_shared<PingDemo>(msprt_channel));
         return true;
     }
 
