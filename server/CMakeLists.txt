@@ -27,9 +27,9 @@ add_executable(${PROJECT_NAME}
 )
 
 target_include_directories(${PROJECT_NAME} PUBLIC
-    ${PROJECT_SOURCE_DIR}
-    ${PROJECT_SOURCE_DIR}/src
-    ${SUP_ROOT_FOLDER}/utils
+    "${PROJECT_SOURCE_DIR}"
+    "${PROJECT_SOURCE_DIR}/src"
+    "${SUP_ROOT_FOLDER}/utils"
     "${SUP_GRPC_BINARIES_DIR}/grpc/include"
     "${SUP_GRPC_BINARIES_DIR}/protobuf/include"
 )
