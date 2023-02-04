@@ -20,19 +20,27 @@ namespace Your_Project
     {
     public:
         PingDemo() = default;
-        PingDemo(std::shared_ptr<grpc::Channel> _channel) : msprt_channel(_channel) {};
+        PingDemo(std::shared_ptr<grpc::Channel> _channel) : msprt_channel(_channel) {
+            m_stub = YourProject::YourProjectServer::NewStub(msprt_channel);
+            m_clientID.set_id(54321);
+        };
         ~PingDemo() = default;
 
         virtual void OnUIRender() override{
             ImGui::Begin("PingDemo");
                 if(ImGui::Button("Ping Server"))
                 {
-
+                    grpc::ClientContext context;
+                    grpc::Status status = m_stub->Ping(&context, m_clientID, &m_serverID);
+                    ImGui::Text("[Ping]: %d ", m_serverID.id());
                 }
             ImGui::End();
         };
     private:
         std::shared_ptr<grpc::Channel> msprt_channel;
         std::unique_ptr<YourProject::YourProjectServer::Stub> m_stub;
+
+        YourProject::Id m_clientID;
+        YourProject::Id m_serverID;
     };
 }
