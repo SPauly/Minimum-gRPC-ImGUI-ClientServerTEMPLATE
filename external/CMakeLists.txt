@@ -69,11 +69,11 @@ else()
 # limitations under the License.
 #
 # changed by the author of this repository 
-  message(STATUS "External: Building gRPC from source at: ${SUP_GRPC_BINARIES_DIR}")
+  message(STATUS "External: Building gRPC from source at: ${SUP_ROOT_FOLDER}/external/grpc")
   # Builds absl project from the git submodule.
   ExternalProject_Add(absl
     PREFIX absl
-    SOURCE_DIR "${SUP_GRPC_BINARIES_DIR}/abseil-cpp"
+    SOURCE_DIR "${SUP_ROOT_FOLDER}/external/grpc/third_party/abseil-cpp"
     CMAKE_CACHE_ARGS
           -DCMAKE_POSITION_INDEPENDENT_CODE:BOOL=TRUE
           -DCMAKE_INSTALL_PREFIX:PATH=${SUP_GRPC_BINARIES_DIR}/absl
@@ -82,7 +82,7 @@ else()
   # Builds c-ares project from the git submodule.
   ExternalProject_Add(c-ares
     PREFIX c-ares
-    SOURCE_DIR "${SUP_GRPC_BINARIES_DIR}/cares/cares"
+    SOURCE_DIR "${SUP_ROOT_FOLDER}/external/grpc/third_party/cares/cares"
     CMAKE_CACHE_ARGS
           -DCARES_SHARED:BOOL=OFF
           -DCARES_STATIC:BOOL=ON
@@ -93,7 +93,7 @@ else()
   # Builds protobuf project from the git submodule.
   ExternalProject_Add(protobuf
     PREFIX protobuf
-    SOURCE_DIR "${SUP_GRPC_BINARIES_DIR}/protobuf/cmake"
+    SOURCE_DIR "${SUP_ROOT_FOLDER}/external/grpc/third_party/protobuf/cmake"
     CMAKE_CACHE_ARGS
           -Dprotobuf_BUILD_TESTS:BOOL=OFF
           -Dprotobuf_WITH_ZLIB:BOOL=OFF
@@ -104,7 +104,7 @@ else()
   # Builds re2 project from the git submodule.
   ExternalProject_Add(re2
     PREFIX re2
-    SOURCE_DIR "${SUP_GRPC_BINARIES_DIR}/re2"
+    SOURCE_DIR "${SUP_ROOT_FOLDER}/external/grpc/third_party/re2"
     CMAKE_CACHE_ARGS
           -DCMAKE_POSITION_INDEPENDENT_CODE:BOOL=TRUE
           -DCMAKE_INSTALL_PREFIX:PATH=${SUP_GRPC_BINARIES_DIR}/re2
@@ -113,7 +113,7 @@ else()
   # Builds zlib project from the git submodule.
   ExternalProject_Add(zlib
     PREFIX zlib
-    SOURCE_DIR "${SUP_GRPC_BINARIES_DIR}/zlib"
+    SOURCE_DIR "${SUP_ROOT_FOLDER}/external/grpc/third_party/zlib"
     CMAKE_CACHE_ARGS
           -DCMAKE_INSTALL_PREFIX:PATH=${SUP_GRPC_BINARIES_DIR}/zlib
   )
@@ -135,7 +135,7 @@ else()
   # are correctly located.
   ExternalProject_Add(grpc
     PREFIX grpc
-    SOURCE_DIR "${SUP_GRPC_BINARIES_DIR}"
+    SOURCE_DIR "${SUP_ROOT_FOLDER}/external/grpc"
     CMAKE_CACHE_ARGS
           -DgRPC_INSTALL:BOOL=ON
           -DgRPC_BUILD_TESTS:BOOL=OFF
