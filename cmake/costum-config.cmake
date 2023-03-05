@@ -11,5 +11,5 @@ set(SUP_UTILS_BUILD ON CACHE BOOL "Generate and compile the utilities" FORCE)
 
 # Third_Party_Depends Variables
 set(SUP_GRPC_PRECOMPILED_BINARIES ON CACHE BOOL "Use precompiled binaries for gRPC -> expects Path to build folder with all dependencies. See README" FORCE)
-set(SUP_GRPC_BINARIES_DIR "${SUP_ROOT_FOLDER}/../Habitify/build/third_party" CACHE PATH "Location of precompiled binaries. Has to be set if option is set to ON" FORCE)
+set(SUP_GRPC_BINARIES_DIR "${SUP_ROOT_FOLDER}/build/third_party" CACHE PATH "Location of precompiled binaries. Has to be set if option is set to ON" FORCE)
 set(SUP_GLFW_DIR "${SUP_ROOT_FOLDER}/external/glfw" CACHE PATH "GLFW Location" FORCE)
